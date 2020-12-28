@@ -1,8 +1,3 @@
-/**
- * This program computes the sum of the trigonometric tangents of N random numbers in serial
- * <p>
- * Created by Jose Rogado on 17-12-2021.
- */
 package pt.ulht.mbalves.sumoftan;
 
 import java.util.Random;
@@ -28,28 +23,33 @@ public class ParallelSum {
 
         // Initialize global Array
         arrayInit(nValues);
+        System.out.println("Computing sum of " + globalArray.length + " values...");
 
         // Do the serial sum
         startTime = System.currentTimeMillis();
         int nCores = Runtime.getRuntime().availableProcessors();
         int part = nValues / nCores;
         SumThread[] threads = new SumThread[nCores];
-        for (int i = 0; i < nCores; i++) {
+        for (int i = 0; i < nCores - 1; i++) {
             threads[i] = new SumThread("Thread " + i, part * i, part * (i + 1), globalArray);
             threads[i].start();
         }
-        for (int i = 0; i < nCores; i++) {
+        // Last part use the main thread
+        threads[nCores - 1] = new SumThread("Thread " + (nCores - 1), part * (nCores - 1), part * (nCores), globalArray);
+        threads[nCores - 1].run();
+
+        for (int i = 0; i < nCores - 1; i++) {
             threads[i].join();
             totalSum += threads[i].getTotal();
         }
 
         stopTime = System.currentTimeMillis();
         long totalTime = stopTime - startTime;
-        System.out.println("--------------- 2. Parallel Sum ------------------");
+        System.out.println("------------ 1. Sum of Tangent (Parallel) ---------------");
         System.out.println("Count Items  = " + nValues);
         System.out.println("Total Sum    = " + totalSum);
         System.out.println("Elapsed Time = " + totalTime + "ms");
-        System.out.println("--------------------------------------------------");
+        System.out.println("---------------------------------------------------------");
     }
 }
 

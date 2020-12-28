@@ -1,4 +1,3 @@
-
 package pt.ulht.mbalves.sumoftan;
 
 import java.util.Random;
@@ -24,17 +23,18 @@ public class SerialSum {
 
         // Initialize global Array
         arrayInit(nValues);
+        System.out.println("Computing sum of " + globalArray.length + " values...");
 
         // Do the serial sum
         startTime = System.currentTimeMillis();
         totalSum = sum(0, nValues, globalArray);
         stopTime = System.currentTimeMillis();
         long serialTime = stopTime - startTime;
-        System.out.println("--------------- 1. Serial Sum ------------------");
+        System.out.println("------------ 1. Sum of Tangent (Serial) ---------------");
         System.out.println("Count Items  = " + nValues);
         System.out.println("Total Sum    = " + totalSum);
         System.out.println("Elapsed Time = " + serialTime + "ms");
-        System.out.println("--------------------------------------------------");
+        System.out.println("-------------------------------------------------------");
     }
 
     static private double sum(int begin, int end, double[] globalArray) {
