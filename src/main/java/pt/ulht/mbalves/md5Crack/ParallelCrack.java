@@ -54,7 +54,7 @@ public class ParallelCrack {
                     }
                     done = true;
                     System.out.print("Found password = " + threads[i].getPassword());
-                    System.out.println(" ( Thread " + i + ")");
+                    System.out.println(" (Thread " + i + ")");
                     System.out.println("Iterations     = " + loops);
                     break;
                 }

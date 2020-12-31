@@ -16,12 +16,12 @@ public class ParallelMultiply {
 
         for (int i = 0; i < heightA; i++) {
             for (int j = 0; j < widthB; j++) {
-                firstMatrix[i][j] = 1.0f;
+                firstMatrix[i][j] = i * n + j; //1.0f;
             }
         }
         for (int i = 0; i < heightA; i++) {
             for (int j = 0; j < widthB; j++) {
-                secondMatrix[i][j] = 1.0f;
+                secondMatrix[i][j] = i * n + j; //1.0f;
             }
         }
         System.out.println("Computing multiply 2 matrices with " + n + " values...");
@@ -29,11 +29,11 @@ public class ParallelMultiply {
         // Multiply Two matrices
         long time = System.currentTimeMillis();
         float[][] product = multiplyMatrices(firstMatrix, secondMatrix, heightA, widthA, widthB);
-        long serialTime = System.currentTimeMillis() - time;
+        long totalTime = System.currentTimeMillis() - time;
 
         System.out.println("------------ 2. Multiply 2 Matrices (Parallel) ---------------");
         System.out.println("Result Matrix  = " + n + " x " + n);
-        System.out.println("Elapsed Time = " + serialTime + "ms");
+        System.out.println("Elapsed Time = " + totalTime + "ms");
         System.out.println("-------------------------------------------------------");
 
         System.out.println();

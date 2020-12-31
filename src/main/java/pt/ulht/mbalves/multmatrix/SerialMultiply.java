@@ -16,12 +16,12 @@ public class SerialMultiply {
 
         for (int i = 0; i < heightA; i++) {
             for (int j = 0; j < widthB; j++) {
-                firstMatrix[i][j] = 1.0f;
+                firstMatrix[i][j] = i * n + j; //1.0f;
             }
         }
         for (int i = 0; i < heightA; i++) {
             for (int j = 0; j < widthB; j++) {
-                secondMatrix[i][j] = 1.0f;
+                secondMatrix[i][j] = i * n + j; //1.0f;
             }
         }
         System.out.println("Computing multiply 2 matrices " + n + " squared...");
